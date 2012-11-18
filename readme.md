@@ -10,9 +10,9 @@ Version
 
 0.1
 
-THIS IS A BETA RELEASE!
+THIS IS A BETA RELEASE!  
 I had not the time to test this very much so if you rely on this script blindly
-you may get some unexpected results.
+you may get some unexpected results.  
 You may help me write some tests to be able to check things better.
 
 
@@ -65,26 +65,26 @@ Configuration
 A javascript object can be passed as a user configuration. Here are the possible keys
 explained.
 
-**left** (*string*: '')  
+**left** (_string_: '')  
 The full content of the left side of the diff.
 
-**right** (*string*: '')  
+**right** (_string_: '')  
 The full content of the right side of the diff.
 
-**merged** (*function*: function(merge, left, right) {})  
+**merged** (_function_: function(merge, left, right) {})  
 A callback function that is called after the merge has completed.
 
-**button** (*mixed* {optional})  
+**button** (_mixed_ {optional})  
 A Selector or element that will be used as trigger for the final merge.
 If not set or invalid a button will be generated.
 
-**debug** (*boolean*: false)  
+**debug** (_boolean_: false)  
 If true additional infos will be passed to the console.
 
-**pupupResult** (*boolean*: false)  
+**pupupResult** (_boolean_: false)  
 If true a pop-up window with the new merged content will be presented after merge.
 
-**pupupSources** (*boolean*: false)  
+**pupupSources** (_boolean_: false)  
 If true two pup-up windows with the full left and right content will be presented after merge.
 
 
@@ -126,6 +126,7 @@ Todo
 ----
 
 +	build tests.
++ spellcheck please, im not native english as you may have noticed ;)
 
 
 License
