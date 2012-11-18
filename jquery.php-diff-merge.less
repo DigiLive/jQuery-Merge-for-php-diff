@@ -1,0 +1,64 @@
+.Differences {
+	.ChangeReplace, .ChangeInsert, .ChangeDelete {
+		td {
+			cursor: pointer;
+
+			&.hover, &.dontUse.hover {
+				background: #000;
+				color: #fff;
+				del, ins {
+					background: #000;
+					color: #fff;
+				}
+			}
+			&.use.hover {
+				cursor: default;
+				color: #000;
+				del, ins {
+					background: #6EEF81;
+					color: #000;
+				}
+			}
+
+			&.use {
+				background: #6EEF81;
+			}
+			&.dontUse {
+				background: #F7F7F7;
+				color: #DDDDDD;
+			}
+		}
+	}
+	.ChangeReplace {
+		td {
+			&.use, &.use.hover {
+				del, ins {
+					background: #0CD123;
+				}
+			}
+			&.dontUse {
+				del, ins {
+					background: #DDDDDD;
+					color: #BBBBBB;
+				}
+			}
+		}
+	}
+	&.DifferencesInline {
+		.ChangeDelete, .ChangeInsert {
+			td {
+				&.use.hover {
+					cursor: pointer;
+				}
+				&.hover, &.dontUse.hover {
+					background: #000;
+					color: #fff;
+					del, ins {
+						background: #000;
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}
