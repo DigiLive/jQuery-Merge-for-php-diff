@@ -258,7 +258,7 @@
 
                 if ($conflict.hasClass('ChangeReplace')) {
                     var rowsLeft, rowsRight;
-                    /* Count the rows that have to be deleted. */
+                    /* Count the rows that have to be deleted and inserted. */
                     if ($self.hasClass('DifferencesInline')) {
                         rowsLeft = $conflict.find('.Left').length;
                         rowsRight = $conflict.find('.Right').length;
@@ -269,7 +269,6 @@
                                 rowsLeft++;
                             }
                         });
-                        /* Count the rows that have to be inserted. */
                         rowsRight = 0;
                         $conflict.find('.Right').each(function() {
                             if ($(this).prev('th').html() !== '&nbsp;') {
