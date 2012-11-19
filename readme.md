@@ -35,11 +35,14 @@ $options = array(
 
 /* Initialize the diff class */
 $Diff = new \Diff($left, $right, $options);
+
 /* Initiate the SideBySide or Inline Html renderer */
 $Renderer = new \Diff_Renderer_Html_SideBySide;
 // $Renderer = new \Diff_Renderer_Html_Inline;
 
+/* Render the Diff-table. */
 echo $Diff->render($Renderer);
+
 /* Pass $a and $b to javascript */
 echo '<script type="text/javascript">var left='.json_encode($left).', left='.json_encode($right).';'</script>
 ```
@@ -50,11 +53,25 @@ Also have a look at [the examples](https://github.com/Xiphe/jQuery-Merge-for-php
 $('.Differences').phpdiffmerge({
     left: left,
     right: right,
-    // pupupResult: true,
-    // debug: true,
-    merged: function(end, left, right) {
-        console.log('Merge completed.');
-    }
+    merged: function(merge, left, right) {
+    	/* Do something with the merge */
+        $.post(
+        	'ajax.php',
+        	{
+        		action: 'merge_completed',
+        		merge: merge
+        	},
+        	function() {
+        		console.log('done');
+        	}
+        );
+    },
+    /* Use your own "Merge now" button */
+    // ,button: '#myButtonId'
+    /* uncomment to see the complete merge in a pop-up window */
+    // ,pupupResult: true
+    /* uncomment to pass additional infos to the console. */
+    // ,debug: true
 });
 ```
 
@@ -65,26 +82,26 @@ Configuration
 A javascript object can be passed as a user configuration. Here are the possible keys
 explained.
 
-**left** (_string_: '')  
-The full content of the left side of the diff.
+**left** | _string_: ""  
+The full content of the left file as an javascript line-by-line array.
 
-**right** (_string_: '')  
-The full content of the right side of the diff.
+**right** | _string_: ""  
+The full content of the right file as an javascript line-by-line array.
 
-**merged** (_function_: function(merge, left, right) {})  
+**merged** | _function_: function(merge, left, right) {}  
 A callback function that is called after the merge has completed.
 
-**button** (_mixed_ {optional})  
+**button** | _mixed_ {optional}  
 A Selector or element that will be used as trigger for the final merge.
 If not set or invalid a button will be generated.
 
-**debug** (_boolean_: false)  
+**debug** | _boolean_: false  
 If true additional infos will be passed to the console.
 
-**pupupResult** (_boolean_: false)  
+**pupupResult** | _boolean_: false  
 If true a pop-up window with the new merged content will be presented after merge.
 
-**pupupSources** (_boolean_: false)  
+**pupupSources** | _boolean_: false  
 If true two pup-up windows with the full left and right content will be presented after merge.
 
 
