@@ -44,7 +44,7 @@ $Renderer = new \Diff_Renderer_Html_SideBySide;
 echo $Diff->render($Renderer);
 
 /* Pass $a and $b to javascript */
-echo '<script type="text/javascript">var left='.json_encode($left).', left='.json_encode($right).';'</script>
+echo '<script type="text/javascript">var left='.json_encode($left).', right='.json_encode($right).';'</script>
 ```
 
 And this as initiation on the client side.
@@ -65,7 +65,7 @@ $('.Differences').phpdiffmerge({
         		console.log('done');
         	}
         );
-    },
+    }
     /* Use your own "Merge now" button */
     // ,button: '#myButtonId'
     /* uncomment to see the complete merge in a pop-up window */
