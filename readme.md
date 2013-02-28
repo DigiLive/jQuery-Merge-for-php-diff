@@ -1,14 +1,13 @@
 jQuery Merge for php-diff
 =========================
 
-A jQuery plugin for handling the conflicts between two documents.
-Requires [php-diff](https://github.com/chrisboulton/php-diff) on the server side.
+A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisboulton/php-diff).
 
 
 Version
 -------
 
-0.1
+0.2
 
 THIS IS A BETA RELEASE!  
 I had not the time to test this very much so if you rely on this script blindly
@@ -23,7 +22,7 @@ This tool requires a side-by-side or inline diff from [php-diff](https://github.
 and the full content of the compared files as a line-by-line array.
 
 I use something like this on the server side.
-Also have a look at [the php-diff examples](https://github.com/chrisboulton/php-diff/tree/master/example).
+Also have a look at the [the php-diff examples](https://github.com/chrisboulton/php-diff/tree/master/example).
 ```php
 $left = explode("\n", preg_replace('/\r\n|\r/', "\n", $THECONTENTOFFILE_A));
 $right = explode("\n", preg_replace('/\r\n|\r/', "\n", $THECONTENTOFFILE_B));
@@ -48,7 +47,7 @@ echo '<script type="text/javascript">var left='.json_encode($left).', right='.js
 ```
 
 And this as initiation on the client side.
-Also have a look at [the examples](https://github.com/Xiphe/jQuery-Merge-for-php-diff/tree/master/example).
+Have a look at [this example](http://xiphe.github.com/jQuery-Merge-for-php-diff/).
 ```javascript
 $('.Differences').phpdiffmerge({
     left: left,
@@ -76,11 +75,11 @@ $('.Differences').phpdiffmerge({
 ```
 
 
-Configuration
--------------
+Options
+-------
 
-A javascript object can be passed as a user configuration. Here are the possible keys
-explained.
+Can be set by passing an object into the initiation `$('.Differences').phpdiffmerge({option: 'foo'});`.
+Or by passing an options object to an instance of PHPDiffMerge `$('.Differences').phpdiffmerge('option', {option: 'bar'});`.
 
 **left** | _string_: ""  
 The full content of the left file as an javascript line-by-line array.
@@ -108,11 +107,19 @@ If true two pup-up windows with the full left and right content will be presente
 Methods
 -------
 
-**useRight()**  
+Called as string option on an instance: `$('.Differences').phpdiffmerge('method', <arguments>);`
+
+**useRight**  
 Selects the right side of all conflicts.
 
-**useLeft()**  
+**useLeft**  
 Selects the left side of all conflicts.
+
+**option**
+Accepts an object, that will be extended into the current options.
+
+**merge**
+The action called by the "Merge" Button 
 
 
 Support
@@ -124,16 +131,18 @@ or whatever. Please use the [github issue system](https://github.com/Xiphe/jQuer
 and i will try to answer.
 
 
-Props
------
+Special Thanks
+--------------
 
-The example shows a side-by-side diff from php-diff so the ´a.txt´, ´b.txt´ and ´style.css´ in the 
-example folder are from that project.
-Thank you Chris Boulton for this beautiful tool.
+To Chris Boulton for PHP-DIFF and mentioning my Plugin in it's readme.
+To the nice js-people at jimdo.com for reviewing this plugin.
 
 
 Changelog
 ---------
+
+### 0.2
++ complete refactoring of the plugin structure.
 
 ### 0.1
 + initial release
@@ -142,7 +151,7 @@ Changelog
 Todo
 ----
 
-+	build tests.
++ write tests.
 + spellcheck please, im not native english as you may have noticed ;)
 
 
