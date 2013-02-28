@@ -1,7 +1,11 @@
 body {
 	background: #fff;
-	font-family: Arial;
-	font-size: 12px;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 1rem;
+}
+#wrap {
+	max-width: 500px;
+	margin: 0 auto 2rem;
 }
 .Differences {
 	width: 100%;
