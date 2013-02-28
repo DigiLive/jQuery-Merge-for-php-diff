@@ -72,6 +72,7 @@
 		result: '',
 
 		lineOffset: 0,
+		_tmpLineOffset: 0,
 
 		/*** CONSTRUCTION ***/
 		_init: function() {
@@ -104,6 +105,7 @@
 			/* Register event listeners for completion actions */
 			self.$conflicts.on( 'xiphe_phpdiffmerge_resolved', $.proxy( self._conflictResolved, self ) );
 			self.$conflicts.on( 'xiphe_phpdiffmerge_merged', $.proxy( self._conflictMerged, self ) );
+			self.$conflicts.on( 'xiphe_phpdiffmerge_merged', $.proxy( self._updateLineOffset, self ) );
 
 			self._debug( 'PHPDiffMerge initiated', self );
 		},
@@ -232,22 +234,50 @@
 		/* Delete a given amount of rows at a specific index from the result. */
 		_deleteResult: function(index, length) {
 			/* Delete the left rows */
-			this._debug("Deleting Left: "+index+" - "+(index+length-1)+'.');
-			this.result.splice((index+this.lineOffset-1), length);
+			this._debug( "Deleting Left: " + index + " - " + (index + length - 1) + '.' );
+			var out = this.result.splice( (index + this.lineOffset - 1), length );
+
+			if (this.options.debug) {
+				out = out.map( function(value) { return $.trim( value ).substring( 0, 10 ) + '...'; } );
+				this._debug( 'Content: ', out );
+			}
 
 			/* Set new Line Offset */
-			this.lineOffset -= length;
+			this._tmpLineOffset -= length;
 		},
 
 		/* Insert a given amount of rows at a specific index from the right side to the result. */
-		_insertResult: function(index, length) {
+		_insertResult: function(index, length, targetIndex) {
+			var insert = [];
+
 			/* Insert the right rows. */
-			this._debug("Inserting Right: Row "+index+" - "+(index+length-1)+'.');
 			for (var i = 0; i < length; i++) {
-				this.result.splice((index+this.lineOffset+i), 0, this.options.right[index-1+i]);
+				/* Get the content from the right site */
+				var line = this.options.right[index - 1 + i];
+				insert.push( line );
+
+				/* inject it to the following line on the left side */
+				this.result.splice( (targetIndex - 1 + this.lineOffset + i), 0, line );
 			}
 
-			this.lineOffset += length;
+			if (this.options.debug) {
+				this._debug("Left line prior to insertion: " + (targetIndex - 1) );
+				this._debug("Content: ", $.trim( this.result[targetIndex - 2 + this.lineOffset] ).substring( 0, 10 ) );
+
+				this._debug("Inserted Right: Row " + index + " - " + (index + length - 1) + '.');
+
+				insert = insert.map( function(value) { return $.trim( value ).substring( 0, 10 ) + '...'; } );
+				this._debug( 'Content: (' + insert.join(', ') + ')' );
+			}
+
+			/* Set new Line Offset */
+			this._tmpLineOffset += length;
+		},
+
+		_updateLineOffset: function() {
+			this._debug( "Change lineOffset from: " + this.lineOffset + " to " + (this.lineOffset + this._tmpLineOffset) + '.' );
+			this.lineOffset += this._tmpLineOffset;
+			this._tmpLineOffset = 0;
 		}
 	};
 
@@ -263,7 +293,8 @@
 		_resolved: false,
 		type: '',
 		useLeft: false,
-		line: 0,
+		leftLine: 0,
+		rightLine: 0,
 		rowsLeft: 0,
 		rowsRight: 0,
 
@@ -288,7 +319,7 @@
 
 		merge: function() {
 			if (this.useLeft) {
-				this.master._debug( 'Ignoring lines ' + this.line + ' - ' + ( this.line + this.rowsLeft - 1 ) + '.');
+				this.master._debug( 'Ignoring lines ' + this.leftLine + ' - ' + ( this.leftLine + this.rowsLeft - 1 ) + '.');
 				this.$el.trigger( 'xiphe_phpdiffmerge_merged' );
 				return;
 			}
@@ -331,7 +362,14 @@
 		_clicked: function(event) {
 			var $target = $( event.delegateTarget ), use, dont;
 
-			this.useLeft = $target.hasClass( 'Left' );
+			if (!this.master.inline) {
+				this.useLeft = $target.hasClass( 'Left' );
+			} else {
+				this.useLeft = $target.hasClass( 'use' );
+				if ($target.hasClass( 'Left' )) {
+					this.useLeft = !this.useLeft;
+				}
+			}
 
 			use = this.useLeft ? 'Left' : 'Right';
 			dont = this.useLeft ? 'Right' : 'Left';
@@ -360,16 +398,10 @@
 			 * Get the first line of the conflict from the previous table
 			 * because there was a bug with the line numbers in php-diff.
 			 */
-			var previousTh = this.$el.prev( 'tbody' ).find( 'tr' ).last().find( 'th' ).last();
+			var previousRow = this.$el.prev( 'tbody' ).find( 'tr' ).last();
 
-			this.line = parseInt( previousTh.html(), 10 );
-
-			/* If first line is a conflict, the previous line is NaN -> set to 0 */
-			if (isNaN( this.line )) {
-				this.line = 0;
-			} else {
-				this.line++;
-			}
+			this.leftLine = parseInt( (previousRow.find( 'th' ).first().html() || 0), 10 ) + 1;
+			this.rightLine = parseInt( (previousRow.find( 'th' ).last().html() || 0), 10 ) + 1;
 		},
 
 		_setRows: function() {
@@ -395,11 +427,11 @@
 		},
 
 		_insert: function() {
-			this.master._insertResult(this.line, this.rowsRight);
+			this.master._insertResult(this.rightLine, this.rowsRight, this.leftLine);
 		},
 
 		_delete: function() {
-			this.master._deleteResult(this.line, this.rowsLeft);
+			this.master._deleteResult(this.leftLine, this.rowsLeft);
 		}
 	};
 
