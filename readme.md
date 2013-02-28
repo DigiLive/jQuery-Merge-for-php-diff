@@ -2,7 +2,7 @@ jQuery Merge for php-diff
 =========================
 
 A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisboulton/php-diff).
-
+[Example](http://xiphe.github.com/jQuery-Merge-for-php-diff/)
 
 Version
 -------
