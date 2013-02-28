@@ -7,7 +7,7 @@ A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisb
 Version
 -------
 
-0.2
+0.2.1
 
 THIS IS A BETA RELEASE!  
 I had not the time to test this very much so if you rely on this script blindly
@@ -74,20 +74,28 @@ $('.Differences').phpdiffmerge({
 });
 ```
 
+Playground
+----------
+
+I added an example folder. It should be pretty straight forward.  
+You have to run ´composer install´ inside it because i did not include the PHP DIFF Class itself.  
+There are a.txt and b.txt where you can change the compared files.  
+Inside the index.php you can change the DIFF Style from side-by-side to inline and play with the plugin-options.
+
 
 Options
 -------
 
-Can be set by passing an object into the initiation `$('.Differences').phpdiffmerge({option: 'foo'});`.
+Can be set by passing an object into the initiation `$('.Differences').phpdiffmerge({option: 'foo'});`.  
 Or by passing an options object to an instance of PHPDiffMerge `$('.Differences').phpdiffmerge('option', {option: 'bar'});`.
 
 **left** | _string_: ""  
-The full content of the left file as an javascript line-by-line array.
+The full content of the left file as an JavaScript line-by-line array.
 
 **right** | _string_: ""  
-The full content of the right file as an javascript line-by-line array.
+The full content of the right file as an JavaScript line-by-line array.
 
-**merged** | _function_: function(merge, left, right) {}  
+**merged** | _function_: function(result, left, right) {}  
 A callback function that is called after the merge has completed.
 
 **button** | _mixed_ {optional}  
@@ -95,7 +103,7 @@ A Selector or element that will be used as trigger for the final merge.
 If not set or invalid a button will be generated.
 
 **debug** | _boolean_: false  
-If true additional infos will be passed to the console.
+Set true to log the steps made while merging into the console.
 
 **pupupResult** | _boolean_: false  
 If true a pop-up window with the new merged content will be presented after merge.
@@ -125,21 +133,23 @@ The action called by the "Merge" Button
 Support
 -------
 
-I've written this project for my own needs so i am not willing to give
-full support. Anyway, i am very interested in any bugs, hints, requests
-or whatever. Please use the [github issue system](https://github.com/Xiphe/jQuery-Merge-for-php-diff/issues)
-and i will try to answer.
+Please use the [github issue system](https://github.com/Xiphe/jQuery-Merge-for-php-diff/issues) to report bugs, feature request or just say hello :)  
+Keep in mind, that this plug-in is distributed without any warranty as described inside the LICENSE.
 
 
 Special Thanks
 --------------
 
-To Chris Boulton for PHP-DIFF and mentioning my Plugin in it's readme.
-To the nice js-people at jimdo.com for reviewing this plugin.
+To Chris Boulton for PHP-DIFF and mentioning my plugin in it's readme.
+To Robert and Martin from jimdo.com for reviewing this plugin and giving me some verry useful hints.
 
 
 Changelog
 ---------
+
+### 0.2.1
++ bugfixes for multiline and inline issues
++ new example/sandbox
 
 ### 0.2
 + complete refactoring of the plugin structure.

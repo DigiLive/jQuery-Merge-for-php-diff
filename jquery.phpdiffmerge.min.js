@@ -1,5 +1,5 @@
 /**
- * jQuery Merge for php-diff v0.2
+ * jQuery Merge for php-diff v0.2.1
  * 
  * A jQuery plugin for handling the conflicts between two documents.
  * Requires [php-diff](https://github.com/chrisboulton/php-diff) on the server side.
