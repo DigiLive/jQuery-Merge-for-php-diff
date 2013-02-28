@@ -78,9 +78,9 @@ Playground
 ----------
 
 I added an example folder. It should be pretty straight forward.  
-You have to run ´composer install´ inside it because i did not include the PHP DIFF Class itself.  
-There are a.txt and b.txt where you can change the compared files.  
-Inside the index.php you can change the DIFF Style from side-by-side to inline and play with the plugin-options.
+You have to run `composer install` inside it because i did not include the PHP DIFF Class itself.  
+There are `a.txt` and `b.txt` where you can change the compared files.  
+Inside the `index.php` you can change the DIFF Style from side-by-side to inline and play with the plugin-options.
 
 
 Options
@@ -140,7 +140,7 @@ Keep in mind, that this plug-in is distributed without any warranty as described
 Special Thanks
 --------------
 
-To Chris Boulton for PHP-DIFF and mentioning my plugin in it's readme.
+To Chris Boulton for PHP-DIFF and mentioning my plugin in it's readme.  
 To Robert and Martin from jimdo.com for reviewing this plugin and giving me some verry useful hints.
 
 
