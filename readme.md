@@ -7,7 +7,7 @@ A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisb
 Version
 -------
 
-0.2.1
+0.2.2
 
 THIS IS A BETA RELEASE!  
 I had not the time to test this very much so if you rely on this script blindly
