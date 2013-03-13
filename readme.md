@@ -147,6 +147,9 @@ To Robert and Martin from jimdo.com for reviewing this plugin and giving me some
 Changelog
 ---------
 
+### 0.2.2
++ Add _id to PHPDiffMerge instances to make them comparable by QUnits deepEqual
+
 ### 0.2.1
 + bugfixes for multiline and inline issues
 + new example/sandbox
