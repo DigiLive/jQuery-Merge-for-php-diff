@@ -1,5 +1,5 @@
 {
 	"require": {
-		"phpspec/php-diff": "dev-master"
+		"phpspec/php-diff": "~1.0.2"
 	}
 }

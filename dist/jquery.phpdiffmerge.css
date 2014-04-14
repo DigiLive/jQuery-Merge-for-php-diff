@@ -1,0 +1,93 @@
+/*!
+* jQuery-Merge-for-php-diff - A jQuery plugin for handling the conflicts between two documents.
+* v0.2.2 - 2014-04-14 7:49:26 AM UTC
+* Copyright (c) 2014 Hannes Diercks <github@xiphe.net>; License: MIT
+*/
+.Differences .ChangeReplace td,
+.Differences .ChangeInsert td,
+.Differences .ChangeDelete td {
+  cursor: pointer;
+}
+.Differences .ChangeReplace td.hover,
+.Differences .ChangeInsert td.hover,
+.Differences .ChangeDelete td.hover,
+.Differences .ChangeReplace td.dontUse.hover,
+.Differences .ChangeInsert td.dontUse.hover,
+.Differences .ChangeDelete td.dontUse.hover {
+  background: #000;
+  color: #fff;
+}
+.Differences .ChangeReplace td.hover del,
+.Differences .ChangeInsert td.hover del,
+.Differences .ChangeDelete td.hover del,
+.Differences .ChangeReplace td.dontUse.hover del,
+.Differences .ChangeInsert td.dontUse.hover del,
+.Differences .ChangeDelete td.dontUse.hover del,
+.Differences .ChangeReplace td.hover ins,
+.Differences .ChangeInsert td.hover ins,
+.Differences .ChangeDelete td.hover ins,
+.Differences .ChangeReplace td.dontUse.hover ins,
+.Differences .ChangeInsert td.dontUse.hover ins,
+.Differences .ChangeDelete td.dontUse.hover ins {
+  background: #000;
+  color: #fff;
+}
+.Differences .ChangeReplace td.use.hover,
+.Differences .ChangeInsert td.use.hover,
+.Differences .ChangeDelete td.use.hover {
+  cursor: default;
+  color: #000;
+}
+.Differences .ChangeReplace td.use.hover del,
+.Differences .ChangeInsert td.use.hover del,
+.Differences .ChangeDelete td.use.hover del,
+.Differences .ChangeReplace td.use.hover ins,
+.Differences .ChangeInsert td.use.hover ins,
+.Differences .ChangeDelete td.use.hover ins {
+  background: #6EEF81;
+  color: #000;
+}
+.Differences .ChangeReplace td.use,
+.Differences .ChangeInsert td.use,
+.Differences .ChangeDelete td.use {
+  background: #6EEF81;
+}
+.Differences .ChangeReplace td.dontUse,
+.Differences .ChangeInsert td.dontUse,
+.Differences .ChangeDelete td.dontUse {
+  background: #F7F7F7;
+  color: #DDDDDD;
+}
+.Differences .ChangeReplace td.use del,
+.Differences .ChangeReplace td.use.hover del,
+.Differences .ChangeReplace td.use ins,
+.Differences .ChangeReplace td.use.hover ins {
+  background: #0CD123;
+}
+.Differences .ChangeReplace td.dontUse del,
+.Differences .ChangeReplace td.dontUse ins {
+  background: #DDDDDD;
+  color: #BBBBBB;
+}
+.Differences.DifferencesInline .ChangeDelete td.use.hover,
+.Differences.DifferencesInline .ChangeInsert td.use.hover {
+  cursor: pointer;
+}
+.Differences.DifferencesInline .ChangeDelete td.hover,
+.Differences.DifferencesInline .ChangeInsert td.hover,
+.Differences.DifferencesInline .ChangeDelete td.dontUse.hover,
+.Differences.DifferencesInline .ChangeInsert td.dontUse.hover {
+  background: #000;
+  color: #fff;
+}
+.Differences.DifferencesInline .ChangeDelete td.hover del,
+.Differences.DifferencesInline .ChangeInsert td.hover del,
+.Differences.DifferencesInline .ChangeDelete td.dontUse.hover del,
+.Differences.DifferencesInline .ChangeInsert td.dontUse.hover del,
+.Differences.DifferencesInline .ChangeDelete td.hover ins,
+.Differences.DifferencesInline .ChangeInsert td.hover ins,
+.Differences.DifferencesInline .ChangeDelete td.dontUse.hover ins,
+.Differences.DifferencesInline .ChangeInsert td.dontUse.hover ins {
+  background: #000;
+  color: #fff;
+}

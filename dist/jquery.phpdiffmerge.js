@@ -1,14 +1,8 @@
-/**
- * jQuery Merge for php-diff v0.2.2
- * https://github.com/Xiphe/jQuery-Merge-for-php-diff
- *
- * A jQuery plugin for handling the conflicts between two documents.
- * Requires [php-diff](https://github.com/chrisboulton/php-diff) on the server side.
- *
- * Copyright 2014, Hannes Diercks <github@xiphe.net>
- * Released under the MIT license
- */
-/*global console */
+/*!
+* jQuery-Merge-for-php-diff - A jQuery plugin for handling the conflicts between two documents.
+* v0.2.2 - 2014-04-14 7:49:26 AM UTC
+* Copyright (c) 2014 Hannes Diercks <github@xiphe.net>; License: MIT
+*/
 (function($){
 	"use strict";
 

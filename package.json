@@ -1,0 +1,45 @@
+{
+  "name": "jQuery-Merge-for-php-diff",
+  "compactname": "jquery.phpdiffmerge",
+  "version": "0.2.2",
+  "description": "A jQuery plugin for handling the conflicts between two documents.",
+  "main": "jquery.phpdiffmerge.js",
+  "directories": {
+    "example": "example",
+    "test": "tests"
+  },
+  "scripts": {
+    "install": "cd example; composer install; cd ..; ./node_modules/bower/bin/bower install",
+    "test": "./node_modules/grunt-cli/bin/grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Xiphe/jQuery-Merge-for-php-diff.git"
+  },
+  "keywords": [
+    "merge",
+    "conflicts",
+    "phpdiff",
+    "jquery"
+  ],
+  "author": "Hannes Diercks <github@xiphe.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xiphe/jQuery-Merge-for-php-diff/issues"
+  },
+  "devDependencies": {
+    "grunt-cli": "~0.1.13",
+    "grunt": "~0.4.4",
+    "load-grunt-tasks": "~0.4.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "karma": "~0.12.9",
+    "grunt-karma": "~0.8.2",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "karma-coffee-preprocessor": "~0.2.1",
+    "bower": "~1.3.2"
+  }
+}

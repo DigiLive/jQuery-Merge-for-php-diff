@@ -18,9 +18,9 @@
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
         <title>Example - jQuery Merge for php-diff</title>
         <link href="style.css" media="all" rel="stylesheet" type="text/css" />
-        <link href="../jquery.phpdiffmerge.min.css" media="all" rel="stylesheet" type="text/css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
-        <script src="../jquery.phpdiffmerge.min.js" type="text/javascript"></script>
+        <link href="../dist/jquery.phpdiffmerge.css" media="all" rel="stylesheet" type="text/css" />
+        <script src="../bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+        <script src="../dist/jquery.phpdiffmerge.js" type="text/javascript"></script>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
                 $('.Differences').phpdiffmerge({

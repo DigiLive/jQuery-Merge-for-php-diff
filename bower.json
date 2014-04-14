@@ -1,0 +1,30 @@
+{
+  "name": "jQuery-Merge-for-php-diff",
+  "version": "0.2.2",
+  "homepage": "https://github.com/Xiphe/jQuery-Merge-for-php-diff",
+  "authors": [
+    "Hannes Diercks <github@xiphe.net>"
+  ],
+  "description": "A jQuery plugin for handling the conflicts between two documents.",
+  "main": "dist/jquery.phpdiffmerge.js",
+  "keywords": [
+    "merge",
+    "conflicts",
+    "phpdiff",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "tests",
+    "Gruntfile.coffee",
+    "karma.conf.coffee",
+    "package.json"
+  ],
+  "dependencies": {
+    "jquery": "*"
+  }
+}

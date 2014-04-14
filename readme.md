@@ -4,6 +4,7 @@ jQuery Merge for php-diff
 A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisboulton/php-diff).
 [Example](http://xiphe.github.com/jQuery-Merge-for-php-diff/)
 
+
 Version
 -------
 
@@ -77,9 +78,12 @@ $('.Differences').phpdiffmerge({
 Playground
 ----------
 
-I added an example folder. It should be pretty straight forward.  
-You have to run `composer install` inside it because i did not include the PHP DIFF Class itself.  
-There are `a.txt` and `b.txt` where you can change the compared files.  
+In the project folder:
+  * Run `npm install`
+  * Open a php server `php -S localhost:8080`
+  * And open the example page in a browser [localhost:8080/example](http://localhost:8080/example)
+
+In the example folder you can find `a.txt` and `b.txt` where you can change the compared files.  
 Inside the `index.php` you can change the DIFF Style from side-by-side to inline and play with the plugin-options.
 
 
@@ -130,17 +134,10 @@ Accepts an object, that will be extended into the current options.
 The action called by the "Merge" Button 
 
 
-Support
--------
-
-Please use the [github issue system](https://github.com/Xiphe/jQuery-Merge-for-php-diff/issues) to report bugs, feature request or just say hello :)  
-Keep in mind, that this plug-in is distributed without any warranty as described inside the LICENSE.
-
-
 Special Thanks
 --------------
 
-To Chris Boulton for PHP-DIFF and mentioning my plugin in it's readme.  
+To Chris Boulton for PHP-DIFF and mentioning this project in it's readme.  
 To Robert and Martin from jimdo.com for reviewing this plugin and giving me some verry useful hints.
 
 
