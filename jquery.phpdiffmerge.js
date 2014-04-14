@@ -1,30 +1,13 @@
 /**
  * jQuery Merge for php-diff v0.2.2
- * 
+ * https://github.com/Xiphe/jQuery-Merge-for-php-diff
+ *
  * A jQuery plugin for handling the conflicts between two documents.
  * Requires [php-diff](https://github.com/chrisboulton/php-diff) on the server side.
- * 
- * https://github.com/Xiphe/jQuery-Merge-for-php-diff
- * Distributed under GNU General Public License.
+ *
+ * Copyright 2014, Hannes Diercks <github@xiphe.net>
+ * Released under the MIT license
  */
-
-/*
- Copyright (C) 2013 Hannes Diercks
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-*/
 /*global console */
 (function($){
 	"use strict";
@@ -396,7 +379,7 @@
 		},
 
 		_setLine: function() {
-			/* 
+			/*
 			 * Get the first line of the conflict from the previous table
 			 * because there was a bug with the line numbers in php-diff.
 			 */
@@ -466,7 +449,7 @@
 	// =======================  Plugin bridge  ===============================
 	// From jquery.isotope.js
 	// https://github.com/desandro/isotope/blob/master/jquery.isotope.js#L1363
-	// 
+	//
 	// A bit from jQuery UI
 	//   https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.widget.js
 	// A bit from jcarousel
