@@ -59,16 +59,17 @@ module.exports = (grunt) ->
         singleRun: false
         autoWatch: true
 
+    bump:
+      options:
+        files: ['package.json', 'bower.json']
+        updateConfigs: ['pkg']
+        commitFiles: ['package.json', 'bower.json', 'dist/']
+        tagName: 'v%VERSION%'
+        pushTo: 'origin'
+
 
   grunt.registerTask 'test', ['karma:single']
   grunt.registerTask 'watch', ['karma:watch']
   grunt.registerTask 'build', ['less', 'cssmin', 'concat', 'uglify']
   grunt.registerTask 'default', ['test', 'build']
-
-
-
-
-
-
-
-
+  grunt.registerTask 'release', (type) -> grunt.task.run ['test', "bump-only:#{type||'patch'}", 'build', 'bump-commit']
