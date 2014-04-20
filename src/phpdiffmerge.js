@@ -44,7 +44,7 @@
 		inline: false,
 
 		/* The resulting merge */
-		result: '',
+		result: [],
 
 		lineOffset: 0,
 		_tmpLineOffset: 0,
