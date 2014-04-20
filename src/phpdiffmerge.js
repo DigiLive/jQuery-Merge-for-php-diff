@@ -15,39 +15,42 @@
 
   /* PHPDiffMerge constructor */
   function PHPDiffMerge(element, options) {
-    this._id = 1 + count++;
-    this.$el = $(element);
+    var self = this;
 
-    this.options = $.extend({}, defaults, options);
+    self._id = 1 + count++;
+    self.$el = $(element);
 
-    this._defaults = defaults;
-    this._name = pluginName;
+    self.options = $.extend({}, defaults, options);
 
-    this._init();
-  }
-
-  PHPDiffMerge.prototype = {
+    self._defaults = defaults;
+    self._name = pluginName;
 
     /*** PUBLIC VARIABLES ***/
 
     /* The conflict elements */
-    $conflicts: $(),
+    self.$conflicts = $();
 
     /* Collection of conflict classes */
-    conflicts: [],
+    self.conflicts = [];
 
     /* Counters of conflicts left */
-    toResolve: 0,
-    toMerge: 0,
+    self.toResolve = 0;
+    self.toMerge = 0;
 
     /* Indicator if the diff is inline or side-by-side */
-    inline: false,
+    self.inline = false;
 
     /* The resulting merge */
-    result: [],
+    self.result = [];
 
-    lineOffset: 0,
-    _tmpLineOffset: 0,
+    self.lineOffset = 0;
+    self._tmpLineOffset = 0;
+
+
+    self._init();
+  }
+
+  PHPDiffMerge.prototype = {
 
     /*** CONSTRUCTION ***/
     _init: function() {
@@ -93,9 +96,11 @@
      * Select all changes on the right side.
      */
     useRight: function() {
-      this.$conflicts.find('td.Right').click();
-      if (this.$el.hasClass('DifferencesInline')) {
-        this.$el.find('.ChangeDelete td.Left').click().click();
+      var self = this;
+
+      self.$conflicts.find('td.Right').click();
+      if (self.$el.hasClass('DifferencesInline')) {
+        self.$el.find('.ChangeDelete td.Left').click().click();
       }
     },
 
@@ -103,9 +108,11 @@
      * Selects all changes on the right.
      */
     useLeft: function() {
-      this.$conflicts.find('td.Left').click();
-      if (this.$el.hasClass('DifferencesInline')) {
-        this.$el.find('.ChangeInsert td.Right').click().click();
+      var self = this;
+
+      self.$conflicts.find('td.Left').click();
+      if (self.$el.hasClass('DifferencesInline')) {
+        self.$el.find('.ChangeInsert td.Right').click().click();
       }
     },
 
@@ -113,27 +120,29 @@
      * Start the merge process
      */
     merge: function(event) {
+      var self = this;
+
       if (typeof event !== 'undefined' && event !== null) {
         event.preventDefault();
       }
 
       /* Don't work, if any conflicts are unresolved */
-      if (this.options.button.attr('disabled') === 'disabled') {
-        this._debug('Unable to merge: not all conflicts have been resolved.');
+      if (self.options.button.attr('disabled') === 'disabled') {
+        self._debug('Unable to merge: not all conflicts have been resolved.');
         return;
       }
 
       /* Initiate the end by cloning the left side. */
-      this.result = this.options.left.slice(0);
+      self.result = self.options.left.slice(0);
 
       /* Reset line offset */
-      this.lineOffset = 0;
+      self.lineOffset = 0;
 
       /* Reset the todo counter */
-      this.toMerge = this.$conflicts.length;
+      self.toMerge = self.$conflicts.length;
 
-      for (var i = 0; i < this.conflicts.length; i++) {
-        this.conflicts[i].merge();
+      for (var i = 0; i < self.conflicts.length; i++) {
+        self.conflicts[i].merge();
       }
     },
 
@@ -143,8 +152,10 @@
      * @param {object} options a plain options object
      */
     option: function(options) {
+      var self = this;
+
       if ($.isPlainObject(options)) {
-        this.options = $.extend(true, this.options, options);
+        self.options = $.extend(true, self.options, options);
       }
     },
 
@@ -155,8 +166,10 @@
      * Check if a merge button is available or generate one.
      */
     _ensurePresenceOfMergeButton: function() {
-      if (typeof this.options.button === 'undefined' || !$(this.options.button).length) {
-        this.options.button = $('<button />')
+      var self = this;
+
+      if (typeof self.options.button === 'undefined' || !$(self.options.button).length) {
+        self.options.button = $('<button />')
           .html('Merge')
           .attr('disabled', 'disabled')
           .css({
@@ -165,13 +178,13 @@
             width: '200px',
             margin: '50px auto'
           });
-        this.$el.after(this.options.button);
+        self.$el.after(self.options.button);
       } else {
-        this.options.button = $(this.options.button).attr('disabled', 'disabled');
+        self.options.button = $(self.options.button).attr('disabled', 'disabled');
       }
 
       /* Merge on click */
-      this.options.button.click($.proxy(this.merge, this));
+      self.options.button.click($.proxy(self.merge, self));
     },
 
     _debug: function() {
@@ -182,150 +195,164 @@
 
     /* callback for whenever a conflict is resolved */
     _conflictResolved: function() {
-      this.toResolve--;
-      if (this.toResolve === 0) {
-        this.options.button.removeAttr('disabled');
+      var self = this;
+
+      self.toResolve--;
+      if (self.toResolve === 0) {
+        self.options.button.removeAttr('disabled');
       }
     },
 
     /* callback for whenever a conflict is merged */
     _conflictMerged: function() {
-      this.toMerge--;
-      if (this.toMerge === 0) {
-        if (this.options.pupupResult) {
-          popup('end', this.result.join('\n'));
+      var self = this;
+
+      self.toMerge--;
+      if (self.toMerge === 0) {
+        if (self.options.pupupResult) {
+          popup('end', self.result.join('\n'));
         }
         /* Pup-up the sources if set in configuration */
-        if (this.options.pupupSources) {
-          popup('left', this.options.left.join('\n'));
-          popup('right', this.options.right.join('\n'));
+        if (self.options.pupupSources) {
+          popup('left', self.options.left.join('\n'));
+          popup('right', self.options.right.join('\n'));
         }
         /* Call the merged-callback if callable */
-        if (typeof this.options.merged === 'function') {
-          this.options.merged.call(this, this.result, this.options.left, this.options.right);
+        if (typeof self.options.merged === 'function') {
+          self.options.merged.call(self, self.result, self.options.left, self.options.right);
         }
       }
     },
 
     /* Delete a given amount of rows at a specific index from the result. */
     _deleteResult: function(index, length) {
-      /* Delete the left rows */
-      this._debug('Deleting Left: ' + index + ' - ' + (index + length - 1) + '.');
-      var out = this.result.splice((index + this.lineOffset - 1), length);
+      var self = this;
 
-      if (this.options.debug) {
+      /* Delete the left rows */
+      self._debug('Deleting Left: ' + index + ' - ' + (index + length - 1) + '.');
+      var out = self.result.splice((index + self.lineOffset - 1), length);
+
+      if (self.options.debug) {
         out = out.map(function(value) { return $.trim(value).substring(0, 10) + '...'; });
-        this._debug('Content: ', out);
+        self._debug('Content: ', out);
       }
 
       /* Set new Line Offset */
-      this._tmpLineOffset -= length;
+      self._tmpLineOffset -= length;
     },
 
     /* Insert a given amount of rows at a specific index from the right side to the result. */
     _insertResult: function(index, length, targetIndex) {
+      var self = this;
       var insert = [];
 
       /* Insert the right rows. */
       for (var i = 0; i < length; i++) {
         /* Get the content from the right site */
-        var line = this.options.right[index - 1 + i];
+        var line = self.options.right[index - 1 + i];
         insert.push(line);
 
         /* inject it to the following line on the left side */
-        this.result.splice((targetIndex - 1 + this.lineOffset + i), 0, line);
+        self.result.splice((targetIndex - 1 + self.lineOffset + i), 0, line);
       }
 
-      if (this.options.debug) {
-        this._debug('Left line prior to insertion: ' + (targetIndex - 1));
-        this._debug(
-          'Content: ', $.trim(this.result[targetIndex - 2 + this.lineOffset]).substring(0, 10)
+      if (self.options.debug) {
+        self._debug('Left line prior to insertion: ' + (targetIndex - 1));
+        self._debug(
+          'Content: ', $.trim(self.result[targetIndex - 2 + self.lineOffset]).substring(0, 10)
         );
 
-        this._debug('Inserted Right: Row ' + index + ' - ' + (index + length - 1) + '.');
+        self._debug('Inserted Right: Row ' + index + ' - ' + (index + length - 1) + '.');
 
         insert = insert.map(function(value) {
           return $.trim(value).substring(0, 10) + '...';
         });
-        this._debug('Content: (' + insert.join(', ') + ')');
+        self._debug('Content: (' + insert.join(', ') + ')');
       }
 
       /* Set new Line Offset */
-      this._tmpLineOffset += length;
+      self._tmpLineOffset += length;
     },
 
     _updateLineOffset: function() {
-      this._debug('Change lineOffset from: ' + this.lineOffset + ' to ' +
-        (this.lineOffset + this._tmpLineOffset) + '.');
-      this.lineOffset += this._tmpLineOffset;
-      this._tmpLineOffset = 0;
+      var self = this;
+
+      self._debug('Change lineOffset from: ' + self.lineOffset + ' to ' +
+        (self.lineOffset + self._tmpLineOffset) + '.');
+      self.lineOffset += self._tmpLineOffset;
+      self._tmpLineOffset = 0;
     }
   };
 
   /* Conflict Constructor */
   function Conflict(element, master) {
-    this.$el = $(element);
-    this.master = master;
+    var self = this;
 
-    this._init();
+    self.$el = $(element);
+    self.master = master;
+
+    self._resolved = false;
+    self.type = '';
+    self.useLeft = false;
+    self.leftLine = 0;
+    self.rightLine = 0;
+    self.rowsLeft = 0;
+    self.rowsRight = 0;
+
+    self._init();
   }
 
   Conflict.prototype = {
-    _resolved: false,
-    type: '',
-    useLeft: false,
-    leftLine: 0,
-    rightLine: 0,
-    rowsLeft: 0,
-    rowsRight: 0,
-
 
     /*** CONSTRUCTION ***/
-
     _init: function() {
-      this.type = this.$el.attr('class').match(/Change([\w]+)/)[1];
+      var self = this;
 
-      this.$el.find('td')
-        .click($.proxy(this._clicked, this))
-        .hover($.proxy(this._hoverIn, this), $.proxy(this._hoverOut, this));
+      self.type = self.$el.attr('class').match(/Change([\w]+)/)[1];
 
-      this._setLine();
-      this._setRows();
+      self.$el.find('td')
+        .click($.proxy(self._clicked, self))
+        .hover($.proxy(self._hoverIn, self), $.proxy(self._hoverOut, self));
 
-      this.master._debug('Conflict initiated:', this);
+      self._setLine();
+      self._setRows();
+
+      self.master._debug('Conflict initiated:', self);
     },
 
 
     /*** PUBLIC METHODS ***/
 
     merge: function() {
-      if (this.useLeft) {
-        this.master._debug(
-          'Ignoring lines ' + this.leftLine + ' - ' + (this.leftLine + this.rowsLeft - 1) + '.'
+      var self = this;
+
+      if (self.useLeft) {
+        self.master._debug(
+          'Ignoring lines ' + self.leftLine + ' - ' + (self.leftLine + self.rowsLeft - 1) + '.'
         );
-        this.$el.trigger('xiphe_phpdiffmerge_merged');
+        self.$el.trigger('xiphe_phpdiffmerge_merged');
         return;
       }
 
-      this.master._debug('Merging Conflict:', this);
+      self.master._debug('Merging Conflict:', self);
 
-      switch (this.type) {
+      switch (self.type) {
         case 'Replace':
-          this._delete();
-          this._insert();
+          self._delete();
+          self._insert();
           break;
         case 'Insert':
-          this._insert();
+          self._insert();
           break;
         case 'Delete':
-          this._delete();
+          self._delete();
           break;
         default:
-          logError('Undefined merge method "' + this.type + '".');
+          logError('Undefined merge method "' + self.type + '".');
           return;
       }
 
-      this.$el.trigger('xiphe_phpdiffmerge_merged');
+      self.$el.trigger('xiphe_phpdiffmerge_merged');
     },
 
 
@@ -343,48 +370,51 @@
     },
 
     _clicked: function(event) {
+      var self = this;
       var $target = $(event.delegateTarget), use, dont;
 
-      if (!this.master.inline) {
-        this.useLeft = $target.hasClass('Left');
+      if (!self.master.inline) {
+        self.useLeft = $target.hasClass('Left');
       } else {
-        this.useLeft = $target.hasClass('use');
+        self.useLeft = $target.hasClass('use');
         if ($target.hasClass('Left')) {
-          this.useLeft = !this.useLeft;
+          self.useLeft = !self.useLeft;
         }
       }
 
-      use = this.useLeft ? 'Left' : 'Right';
-      dont = this.useLeft ? 'Right' : 'Left';
+      use = self.useLeft ? 'Left' : 'Right';
+      dont = self.useLeft ? 'Right' : 'Left';
 
       /* Highlight the current clicked change. */
-      if (this.master.inline &&
-        (this.type === 'Delete' || this.type === 'Insert')
+      if (self.master.inline &&
+        (self.type === 'Delete' || self.type === 'Insert')
       ) {
-        var $c = this.$el.find('td');
+        var $c = self.$el.find('td');
         $c.toggleClass('use');
         $c.toggleClass('dontUse', !$c.hasClass('use'));
       } else {
-        this.$el.find('td.' + use).removeClass('dontUse').addClass('use');
-        this.$el.find('td.' + dont).removeClass('use').addClass('dontUse');
+        self.$el.find('td.' + use).removeClass('dontUse').addClass('use');
+        self.$el.find('td.' + dont).removeClass('use').addClass('dontUse');
       }
 
       /* Consider this conflict as resolved if it is clicked for the first time. */
-      if (!this._resolved) {
-        this._resolved = true;
-        this.$el.trigger('xiphe_phpdiffmerge_resolved');
+      if (!self._resolved) {
+        self._resolved = true;
+        self.$el.trigger('xiphe_phpdiffmerge_resolved');
       }
     },
 
     _setLine: function() {
+      var self = this;
+
       /*
        * Get the first line of the conflict from the previous table
        * because there was a bug with the line numbers in php-diff.
        */
-      var previousRow = this.$el.prev('tbody').find('tr').last();
+      var previousRow = self.$el.prev('tbody').find('tr').last();
 
-      this.leftLine = parseInt((previousRow.find('th').first().html() || 0), 10) + 1;
-      this.rightLine = parseInt((previousRow.find('th').last().html() || 0), 10) + 1;
+      self.leftLine = parseInt((previousRow.find('th').first().html() || 0), 10) + 1;
+      self.rightLine = parseInt((previousRow.find('th').last().html() || 0), 10) + 1;
     },
 
     _setRows: function() {
@@ -410,11 +440,15 @@
     },
 
     _insert: function() {
-      this.master._insertResult(this.rightLine, this.rowsRight, this.leftLine);
+      var self = this;
+
+      self.master._insertResult(self.rightLine, self.rowsRight, self.leftLine);
     },
 
     _delete: function() {
-      this.master._deleteResult(this.leftLine, this.rowsLeft);
+      var self = this;
+
+      self.master._deleteResult(self.leftLine, self.rowsLeft);
     }
   };
 
@@ -454,12 +488,14 @@
   // A bit from jcarousel
   //   https://github.com/jsor/jcarousel/blob/master/lib/jquery.jcarousel.js
   $.fn[pluginName] = function(options) {
+    var self = this;
+
     if (typeof options === 'string') {
       // call method
       var args = Array.prototype.slice.call(arguments, 1);
 
-      this.each(function() {
-        var instance = $.data(this, 'plugin_' + pluginName);
+      self.each(function() {
+        var instance = $.data(self, 'plugin_' + pluginName);
         if (!instance) {
           logError('cannot call methods on ' + pluginName + ' prior to initialization; ' +
               'attempted to call method "' + options + '"');
@@ -473,7 +509,7 @@
         instance[options].apply(instance, args);
       });
     } else {
-      this.each(function() {
+      self.each(function() {
         var instance = $.data(this, 'plugin_' + pluginName);
         if (instance) {
           // apply options & init
@@ -487,7 +523,7 @@
     }
     // return jQuery object
     // so plugin methods do not have to
-    return this;
+    return self;
   };
 
 })(jQuery);
