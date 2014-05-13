@@ -495,7 +495,7 @@
       var args = Array.prototype.slice.call(arguments, 1);
 
       self.each(function() {
-        var instance = $.data(self, 'plugin_' + pluginName);
+        var instance = $.data(this, 'plugin_' + pluginName);
         if (!instance) {
           logError('cannot call methods on ' + pluginName + ' prior to initialization; ' +
               'attempted to call method "' + options + '"');

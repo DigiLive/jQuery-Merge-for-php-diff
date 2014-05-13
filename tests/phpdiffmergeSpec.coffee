@@ -22,3 +22,13 @@ describe 'phpdiffmerge', ->
     spyOn instance, '_init'
     $fixture.phpdiffmerge debug: true
     expect(instance._init).toHaveBeenCalled()
+
+  describe 'methods', ->
+    beforeEach ->
+      $fixture.phpdiffmerge
+
+    it 'should have callable methods', ->
+      method = 'useLeft'
+      spyOn instance, method
+      $fixture.phpdiffmerge method
+      expect(instance.useLeft).toHaveBeenCalled()
