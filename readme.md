@@ -77,7 +77,7 @@ Playground
 ----------
 
 In the project folder:
-  * Run `composer install`
+  * Run `composer install --working-dir=example`
   * Open a php server `php -S localhost:8080`
   * And open the example page in a browser [localhost:8080/example](http://localhost:8080/example)
 
