@@ -1,7 +1,7 @@
 {
   "name": "jQuery-Merge-for-php-diff",
   "compactname": "jquery.phpdiffmerge",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A jQuery plugin for handling the conflicts between two documents.",
   "main": "jquery.phpdiffmerge.js",
   "directories": {

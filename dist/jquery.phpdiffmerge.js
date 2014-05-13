@@ -1,6 +1,6 @@
 /*!
 * jQuery-Merge-for-php-diff - A jQuery plugin for handling the conflicts between two documents.
-* v0.3.1 - 2014-04-20 4:09:27 PM UTC
+* v0.3.2 - 2014-05-13 3:53:31 PM UTC
 * Copyright (c) 2014 Hannes Diercks <github@xiphe.net>; License: MIT
 */
 (function($) {
@@ -499,7 +499,7 @@
       var args = Array.prototype.slice.call(arguments, 1);
 
       self.each(function() {
-        var instance = $.data(self, 'plugin_' + pluginName);
+        var instance = $.data(this, 'plugin_' + pluginName);
         if (!instance) {
           logError('cannot call methods on ' + pluginName + ' prior to initialization; ' +
               'attempted to call method "' + options + '"');
