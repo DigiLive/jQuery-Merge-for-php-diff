@@ -98,7 +98,9 @@ The full content of the left file as an JavaScript line-by-line array.
 The full content of the right file as an JavaScript line-by-line array.
 
 **merged** | _function_: function(result, left, right) {}  
-A callback function that is called after the merge has completed.
+A callback function that is called after the merge has completed.  
+all parameters (same as the left and right inputs) are line-by-line arrays
+remember to `.join('/n')` them if you want to use them as strings.
 
 **button** | _mixed_ {optional}  
 A Selector or element that will be used as trigger for the final merge.

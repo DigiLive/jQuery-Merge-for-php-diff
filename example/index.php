@@ -28,8 +28,8 @@
                     right: right,
                     pupupResult: true,
                     debug: true,
-                    merged: function(a,b,c) {
-                        console.log('Merge completed.');
+                    merged: function(result /*, left, right */) {
+                        console.log('Merge completed with: ', result.join('\n'));
                     }
                 });
             });
