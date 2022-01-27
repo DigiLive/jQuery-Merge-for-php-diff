@@ -2,7 +2,7 @@ jQuery Merge for php-diff
 =========================
 
 A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisboulton/php-diff).
-[Example](http://xiphe.github.com/jQuery-Merge-for-php-diff/)
+[Example](http://DigiLive.github.com/jQuery-Merge-for-php-diff/)
 
 
 Version
@@ -46,7 +46,7 @@ echo '<script type="text/javascript">var left='.json_encode($left).', right='.js
 ```
 
 And this as initiation on the client side.
-Have a look at [this example](http://xiphe.github.com/jQuery-Merge-for-php-diff/).
+Have a look at [this example](http://DigiLive.github.com/jQuery-Merge-for-php-diff/).
 ```javascript
 $('.Differences').phpdiffmerge({
     left: left,
@@ -168,4 +168,4 @@ Todo
 License
 -------
 
-[MIT](https://raw.github.com/Xiphe/jQuery-Merge-for-php-diff/master/LICENSE)
+[MIT](https://raw.github.com/DigiLive/jQuery-Merge-for-php-diff/master/LICENSE)
