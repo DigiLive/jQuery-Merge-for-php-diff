@@ -137,8 +137,9 @@ The action called by the "Merge" Button
 Special Thanks
 --------------
 
-To Chris Boulton for PHP-DIFF and mentioning this project in it's readme.  
-To Robert and Martin from jimdo.com for reviewing this plugin and giving me some verry useful hints.
+- To Chris Boulton for PHP-DIFF and mentioning this project in its readme.  
+- To Robert and Martin from jimdo.com for reviewing this plugin and giving me some very useful hints.
+- To [Hannes Diercks](https://github.com/Xiphe/) for creating this library in the first place. 
 
 
 Changelog
