@@ -1,4 +1,7 @@
 <?php
+use jblond\Diff;
+use jblond\Diff\Renderer\Html\SideBySide;
+
     include 'vendor/autoload.php';
     $left = explode("\n", preg_replace('/\r\n|\r/', "\n", file_get_contents('a.txt')));
     $right = explode("\n", preg_replace('/\r\n|\r/', "\n", file_get_contents('b.txt')));
@@ -6,9 +9,12 @@
         //'ignoreWhitespace' => true,
         //'ignoreCase' => true,
     );
-    $Diff = new \Diff($left, $right, $options);
+    $Diff = new Diff($left, $right, $options);
+	$rendererOptions = [
+	    'inlineMarking' => $_GET['inlineMarking'] ?? Diff\Renderer\MainRenderer::CHANGE_LEVEL_LINE,
+	];
     /* Initiate the SideBySide or Inline Html renderer */
-    $Renderer = new \Diff_Renderer_Html_SideBySide;
+    $Renderer = new SideBySide($rendererOptions);
     // $Renderer = new \Diff_Renderer_Html_Inline;
 ?>
 <!DOCTYPE HTML>
@@ -19,7 +25,7 @@
         <title>Example - jQuery Merge for php-diff</title>
         <link href="style.css" media="all" rel="stylesheet" type="text/css" />
         <link href="../dist/jquery.phpdiffmerge.css" media="all" rel="stylesheet" type="text/css" />
-        <script src="../bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
         <script src="../dist/jquery.phpdiffmerge.js" type="text/javascript"></script>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
@@ -38,7 +44,7 @@
     <body>
         <div id="wrap">
             <h2>Hi!</h2>
-            <p>This is an example of Xiphes <a href="https://github.com/Xiphe/jQuery-Merge-for-php-diff">jQuery-Merge-for-php-diff</a>, a client side merge tool for Chris Boultons <a href="https://github.com/chrisboulton/php-diff">PHP DIFF</a>.</p>
+            <p>This is an example of Xiphes / DigiLive <a href="https://github.com/DigiLive/jQuery-Merge-for-php-diff/">jQuery-Merge-for-php-diff</a>, a client side merge tool for JBlonds' <a href="https://github.com/JBlond/php-diff">PHP DIFF</a>.</p>
             <p>You can choose which version of the conflicts you would like to use by clicking on them.<br /> Once the conflicts are resolved you can click "Merge" to see a pup-up of the result.</p>
         </div>
         <?php echo $Diff->render($Renderer); ?>

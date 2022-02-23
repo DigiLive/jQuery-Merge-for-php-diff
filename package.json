@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Xiphe/jQuery-Merge-for-php-diff.git"
+    "url": "git://github.com/DigiLive/jQuery-Merge-for-php-diff"
   },
   "keywords": [
     "merge",
@@ -25,7 +25,7 @@
   "author": "Hannes Diercks <github@xiphe.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Xiphe/jQuery-Merge-for-php-diff/issues"
+    "url": "https://github.com/DigiLive/jQuery-Merge-for-php-diff/issues"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.13",

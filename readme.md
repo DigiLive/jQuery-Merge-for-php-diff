@@ -1,7 +1,7 @@
 jQuery Merge for php-diff
 =========================
 
-A client side merge tool for Chris Boultons [PHP DIFF](https://github.com/chrisboulton/php-diff).
+A client side merge tool for JBlonds' [PHP DIFF](https://github.com/JBlond/php-diff).
 [Example](http://DigiLive.github.com/jQuery-Merge-for-php-diff/)
 
 
@@ -17,11 +17,11 @@ You may help me write some tests to be able to check things better.
 Usage
 -----
 
-This tool requires a side-by-side or inline diff from [php-diff](https://github.com/chrisboulton/php-diff)
+This tool requires a side-by-side or inline diff from [php-diff](https://github.com/JBlond/php-diff)
 and the full content of the compared files as a line-by-line array.
 
 I use something like this on the server side.
-Also have a look at the [the php-diff examples](https://github.com/chrisboulton/php-diff/tree/master/example).
+Also have a look at the [the php-diff examples](https://github.com/JBlond/php-diff/tree/master/example).
 ```php
 $left = explode("\n", preg_replace('/\r\n|\r/', "\n", $THECONTENTOFFILE_A));
 $right = explode("\n", preg_replace('/\r\n|\r/', "\n", $THECONTENTOFFILE_B));
@@ -137,6 +137,7 @@ The action called by the "Merge" Button
 Special Thanks
 --------------
 
+- To JBlond for the new PHP-DIFF version.
 - To Chris Boulton for PHP-DIFF and mentioning this project in its readme.  
 - To Robert and Martin from jimdo.com for reviewing this plugin and giving me some very useful hints.
 - To [Hannes Diercks](https://github.com/Xiphe/) for creating this library in the first place. 
@@ -144,6 +145,11 @@ Special Thanks
 
 Changelog
 ---------
+
+### next
+
++ Update: project dependencies
++ Fix: Links, since the project changed the owner (new github url)
 
 ### 0.2.2
 + Add _id to PHPDiffMerge instances to make them comparable by QUnits deepEqual
