@@ -28,18 +28,19 @@
     "url": "https://github.com/DigiLive/jQuery-Merge-for-php-diff/issues"
   },
   "devDependencies": {
-    "grunt-cli": "~1.4.3",
+    "coffeescript": "^2.6.1",
     "grunt": "~1.4.1",
-    "load-grunt-tasks": "~0.4.0",
+    "grunt-bump": "0.8.0",
+    "grunt-cli": "~1.4.3",
     "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-uglify": "~0.4.0",
-    "grunt-contrib-less": "~0.11.0",
     "grunt-contrib-cssmin": "~0.9.0",
-    "karma": "~6.3.16",
+    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-uglify": "~0.4.0",
     "grunt-karma": "~4.0.2",
+    "karma": "~6.3.16",
     "karma-jasmine": "~4.0.1",
     "karma-phantomjs-launcher": "~1.0.4",
-    "grunt-bump": "0.8.0"
+    "load-grunt-tasks": "~0.4.0"
   },
   "dependencies": {
     "jQuery": "^1.7.4"
