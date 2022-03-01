@@ -1,4 +1,4 @@
-vendor/
-node_modules/
-bower_components/
-composer.lock
+/example/vendor/
+/node_modules/
+/example/composer.lock
+/package-lock.json
